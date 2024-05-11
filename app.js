@@ -25,6 +25,11 @@ io.on("connection", (socket) => {
     // Broadcast to all connected clients
     io.emit("contacts", Array.from(users.entries()));
   });
+
+  socket.on("chat", (data) => {
+    const { to } = data;
+    io.to(to).emit("chat", data);
+  });
 });
 
 // Start the server
