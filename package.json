@@ -1,6 +1,7 @@
 {
   "name": "lr_webchat_node",
   "version": "1.0.0",
+  "type": "module",
   "description": "Chat app back-end built in node.js.",
   "main": "app.js",
   "scripts": {
