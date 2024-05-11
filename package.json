@@ -1,0 +1,26 @@
+{
+  "name": "lr_webchat_node",
+  "version": "1.0.0",
+  "description": "Chat app back-end built in node.js.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Literank/lr_webchat_node.git"
+  },
+  "keywords": [
+    "socket.io",
+    "websocket"
+  ],
+  "author": "literank.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Literank/lr_webchat_node/issues"
+  },
+  "homepage": "https://github.com/Literank/lr_webchat_node#readme",
+  "dependencies": {
+    "socket.io": "^4.7.5"
+  }
+}
