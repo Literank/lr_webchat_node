@@ -10,9 +10,21 @@ const io = new Server(server, {
   },
 });
 
+// Use a Map to store all connected users
+const users = new Map();
+
 // Handle incoming socket connections
 io.on("connection", (socket) => {
-  console.log("A user connected", socket.id);
+  socket.on("user-join", (user) => {
+    if (!user.name) {
+      return;
+    }
+    console.log(`User ${socket.id} => ${user.emoji} ${user.name} joined`);
+    users.set(socket.id, { ...user, sid: socket.id });
+
+    // Broadcast to all connected clients
+    io.emit("contacts", Array.from(users.entries()));
+  });
 });
 
 // Start the server
