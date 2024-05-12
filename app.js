@@ -31,12 +31,18 @@ io.on("connection", (socket) => {
     io.to(to).emit("chat", data);
   });
 
+  socket.on("group-chat", (data) => {
+    const { room } = data;
+    io.to(room).except(socket.id).emit("group-chat", data);
+  });
+
   // Create Room
   socket.on("create-group", (data) => {
     const { sids: socketIds, name: roomName, id: roomId } = data;
     socketIds.forEach((socketId) => {
       io.sockets.sockets.get(socketId)?.join(roomId);
     });
+    io.to(roomId).emit("create-group", data);
     console.log(`Room ${roomId} => ${roomName} created`);
   });
 });
