@@ -30,6 +30,15 @@ io.on("connection", (socket) => {
     const { to } = data;
     io.to(to).emit("chat", data);
   });
+
+  // Create Room
+  socket.on("create-group", (data) => {
+    const { sids: socketIds, name: roomName, id: roomId } = data;
+    socketIds.forEach((socketId) => {
+      io.sockets.sockets.get(socketId)?.join(roomId);
+    });
+    console.log(`Room ${roomId} => ${roomName} created`);
+  });
 });
 
 // Start the server
